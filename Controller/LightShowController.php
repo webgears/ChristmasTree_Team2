@@ -57,7 +57,8 @@ class LightShowController implements ILightShowController
      */
     public function stop()
     {
-        // TODO: Implement stop() method.
+        $command = escapeshellcmd(str_replace("{path}", self::PLAYLIST, self::CMD_STOP_LIST));
+        exec($command . ' &');
     }
 
     /**
@@ -88,7 +89,8 @@ class LightShowController implements ILightShowController
     public function addToPlaylist($title, $mp3_file)
     {
         $fp = fopen(self::PLAYLIST, "a");
-        fwrite($fp, $title."\t".$mp3_file."\n");
+        $str = $title."\t".$mp3_file."\n"
+        fwrite($fp, $str, strlen($str));
         fclose($fp);
     }
 
