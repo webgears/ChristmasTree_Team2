@@ -75,7 +75,7 @@ class LightShowController implements ILightShowController
     public function getPlaylistContent()
     {
         $fp = fopen(self::PLAYLIST, "r");
-        $lines = fgetcsv($fp, null, "\t");
+        $lines = fgetcsv($fp, 0, "\t");
         fclose($fp);
         return $lines;
     }
@@ -99,6 +99,7 @@ class LightShowController implements ILightShowController
      */
     public function clearPlaylist()
     {
-        // TODO: Implement clearPlaylist() method.
+        $fp = fopen(self::PLAYLIST, "w");
+        fclose($fp);
     }
 }
