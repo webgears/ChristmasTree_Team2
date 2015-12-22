@@ -48,13 +48,5 @@ switch ($_GET["action"]) {
     <button type="submit" name="action" value="add" >add</button>
 
     <p>Songs in playlist</p>
-    <ul>
-        <?php
-
-        foreach ($ctrl->getPlaylistContent() as $line) {
-            echo "<li>" . join($line, " ") . "</li>";
-        }
-
-        ?>
-    </ul>
+    <pre><?php echo $ctrl->getPlaylistContent(); ?></pre>
 </form>
