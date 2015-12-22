@@ -57,7 +57,7 @@ class LightShowController implements ILightShowController
      */
     public function stop()
     {
-        $command = escapeshellcmd(str_replace("{path}", self::PLAYLIST, self::CMD_STOP_LIST));
+        $command = escapeshellcmd(self::CMD_STOP_LIST);
         exec($command . ' &');
     }
 
