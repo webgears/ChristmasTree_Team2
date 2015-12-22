@@ -89,7 +89,7 @@ class LightShowController implements ILightShowController
     public function addToPlaylist($title, $mp3_file)
     {
         $fp = fopen(self::PLAYLIST, "a");
-        $str = $title."\t".$mp3_file."\n"
+        $str = $title."\t".$mp3_file."\n";
         fwrite($fp, $str, strlen($str));
         fclose($fp);
     }
