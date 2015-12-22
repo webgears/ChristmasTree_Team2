@@ -1,4 +1,7 @@
 <?php
+
+error_reporting(E_ALL);
+
 include "autoload.php";
 
 use Controller\LightShowController;
@@ -7,7 +10,6 @@ use Controller\LightShowController;
 
 $ctrl = new LightShowController();
 
-var_dump($_GET);
 
 switch ($_GET["action"]) {
     case "play":
@@ -45,4 +47,14 @@ switch ($_GET["action"]) {
 
     <button type="submit" name="action" value="add" >add</button>
 
+    <p>Songs in playlist</p>
+    <ul>
+        <?php
+
+        foreach ($ctrl->getPlaylistContent() as $line) {
+            echo "<li>" . join($line, " ") . "</li>";
+        }
+
+        ?>
+    </ul>
 </form>

@@ -19,8 +19,11 @@ class LightShowController implements ILightShowController
      */
     public function getSongs()
     {
+        // return array("/file/last_christmas.mp3");
+
+
         $result = array();
-        if($handle = @opendir(self::MUSIC_FOLDER)) {
+        if($handle = opendir(self::MUSIC_FOLDER)) {
 
             while(($entry = @readdir($handle)) !== false) {
                 // Ends with .mp3
@@ -71,7 +74,10 @@ class LightShowController implements ILightShowController
      */
     public function getPlaylistContent()
     {
-        // TODO: Implement
+        $fp = fopen(self::PLAYLIST, "r");
+        $lines = fgetcsv($fp, null, "\t");
+        fclose($fp);
+        return $lines;
     }
 
     /**
@@ -83,7 +89,9 @@ class LightShowController implements ILightShowController
      */
     public function addToPlaylist($title, $mp3_file)
     {
-        // TODO: Implement
+        $fp = fopen(self::PLAYLIST, "a");
+        fwrite($fp, $title."\t".$mp3_file."\n");
+        fclose($fp);
     }
 
     /**
